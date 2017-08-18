@@ -13,6 +13,8 @@ use app\models\Post;
 use yii\web\Controller;
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
+use yii\data\Pagination;
+use yii\widgets\LinkPager;
 
 
 class DbController extends Controller
@@ -27,9 +29,12 @@ class DbController extends Controller
 
         $posts = Post::find()->all();
 
+
+
         echo Html::tag('h1', 'Posts');
 
         echo Html::ul(ArrayHelper::getColumn($posts, 'title'));
+
 
 
         $comment = new Comment();

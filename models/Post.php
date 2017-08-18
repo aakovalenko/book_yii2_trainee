@@ -10,6 +10,8 @@ use Yii;
  * @property integer $id
  * @property string $title
  * @property string $text
+ * @property integer $created_date
+ * @property integer $modified_date
  */
 class Post extends \yii\db\ActiveRecord
 {
@@ -29,6 +31,7 @@ class Post extends \yii\db\ActiveRecord
         return [
             [['title', 'text'], 'required'],
             [['text'], 'string'],
+            [['created_date', 'modified_date'], 'integer'],
             [['title'], 'string', 'max' => 255],
         ];
     }
@@ -42,6 +45,19 @@ class Post extends \yii\db\ActiveRecord
             'id' => Yii::t('app', 'ID'),
             'title' => Yii::t('app', 'Title'),
             'text' => Yii::t('app', 'Text'),
+            'created_date' => Yii::t('app', 'Created Date'),
+            'modified_date' => Yii::t('app', 'Modified Date'),
+        ];
+    }
+
+    public function behaviors()
+    {
+        return [
+            'timestamp'=> [
+                'class' => 'yii\behaviors\TimestampBehavior',
+                'createdAtAttribute' => 'created_date',
+                'updatedAtAttribute' => 'modified_date',
+            ],
         ];
     }
 }
