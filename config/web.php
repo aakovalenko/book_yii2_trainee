@@ -4,6 +4,8 @@ $params = require(__DIR__ . '/params.php');
 $db = require(__DIR__ . '/db.php');
 $db2 = require(__DIR__ . '/db2.php');
 
+Yii::setAlias('admin', __DIR__ . '/../admin');
+
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
@@ -17,7 +19,8 @@ $config = [
             'class' => 'yii\caching\FileCache',
         ],
         'user' => [
-            'identityClass' => 'app\models\User',
+            'class' => 'yii\web\User',
+            'identityClass' => 'app\models\Users',
             'enableAutoLogin' => true,
         ],
         'errorHandler' => [
@@ -50,6 +53,11 @@ $config = [
             ],
         ],
 
+    ],
+    'modules' => [
+        'admin' => [
+            'class' => 'admin\Module',
+        ],
     ],
     'params' => $params,
 ];
