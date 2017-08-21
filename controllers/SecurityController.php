@@ -17,6 +17,7 @@ use yii\filters\AccessControl;
 use yii\filters\VerbFilter;
 use yii\web\Response;
 
+
 class SecurityController extends BaseController
 {
 
@@ -65,8 +66,12 @@ class SecurityController extends BaseController
     }
 
     public function actionRegister(){
+
         $model = new RegistrationForm();
+
         if($model->load(Yii::$app->request->post()) && $model->register()){
+            $model->upload();
+
             return $this->redirect(['/']);
         }
         return $this->render('register', ['model' => $model]);

@@ -17,11 +17,12 @@ use yii\widgets\ActiveForm;
     <div class="row">
         <div class="col-md-6 col-md-offset-3">
 
-            <?php $form = ActiveForm::begin(); ?>
+            <?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
             <?=$form->field($model, 'username'); ?>
             <?=$form->field($model, 'email'); ?>
             <?=$form->field($model, 'fio'); ?>
             <?=$form->field($model, 'password')->passwordInput(); ?>
+            <?=$form->field($model, 'avatar')->fileInput(); ?>
 
             <div class="form-group">
                 <?= Html::submitButton(Yii::t('app', 'Register'), ['class' => 'btn btn-primary']); ?>

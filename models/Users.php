@@ -37,7 +37,6 @@ class Users extends ActiveRecord implements IdentityInterface
         return [
             [['username', 'email', 'fio', 'role', 'hash'], 'required'],
             [['fio', 'hash'], 'string'],
-            [['created_at', 'updated_at'], 'integer'],
             [['username', 'email'], 'string', 'max' => 255],
             [['role'], 'string', 'max' => 25],
         ];
@@ -67,8 +66,8 @@ class Users extends ActiveRecord implements IdentityInterface
             'fio' => Yii::t('app', 'Fio'),
             'role' => Yii::t('app', 'Role'),
             'hash' => Yii::t('app', 'Hash'),
-            'created_at' => Yii::t('app', 'Created At'),
-            'updated_at' => Yii::t('app', 'Updated At'),
+            //'created_at' => Yii::t('app', 'Created At'),
+            //'updated_at' => Yii::t('app', 'Updated At'),
         ];
     }
 
