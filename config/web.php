@@ -58,6 +58,9 @@ $config = [
         'admin' => [
             'class' => 'admin\Module',
         ],
+        'gii' => [
+            'class' => 'yii\gii\Module',
+        ]
     ],
     'params' => $params,
 ];
