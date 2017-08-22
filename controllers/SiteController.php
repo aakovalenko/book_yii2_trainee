@@ -10,6 +10,7 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\RegistrationForm;
+use app\models\Post;
 
 class SiteController extends Controller
 {
@@ -39,7 +40,8 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        return $this->render('index');
+        $post = Post::find()->andWhere(['status_id' => 1])->orderBy('sort')->all();
+        return $this->render('index',['posts' => $post]);
     }
 
 
