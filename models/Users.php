@@ -35,10 +35,12 @@ class Users extends ActiveRecord implements IdentityInterface
     public function rules()
     {
         return [
-            [['username', 'email', 'fio', 'role', 'hash'], 'required'],
-            [['fio', 'hash'], 'string'],
-            [['username', 'email'], 'string', 'max' => 255],
-            [['role'], 'string', 'max' => 25],
+            // username and password are both required
+            [['username', 'hash', 'email', 'fio', 'role'], 'required'],
+            [['username', 'email'], 'trim'],
+            [['email'], 'email'],
+
+            [['username', 'email'], 'unique', 'targetClass' => Users::className()],
         ];
     }
 
@@ -64,7 +66,7 @@ class Users extends ActiveRecord implements IdentityInterface
             'username' => Yii::t('app', 'Username'),
             'email' => Yii::t('app', 'Email'),
             'fio' => Yii::t('app', 'Fio'),
-            'role' => Yii::t('app', 'Role'),
+            //'role' => Yii::t('app', 'Role'),
             'hash' => Yii::t('app', 'Hash'),
             //'created_at' => Yii::t('app', 'Created At'),
             //'updated_at' => Yii::t('app', 'Updated At'),

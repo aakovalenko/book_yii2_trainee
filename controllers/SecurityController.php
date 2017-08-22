@@ -70,11 +70,14 @@ class SecurityController extends BaseController
         $model = new RegistrationForm();
 
         if($model->load(Yii::$app->request->post()) && $model->register()){
-            $model->upload();
+
+            Yii::$app->session->setFlash('success', 'Данные приняты');
 
             return $this->redirect(['/']);
+        }else {
+            Yii::$app->session->setFlash('error', 'Данные не приняты');
+            return $this->render('register', ['model' => $model]);
         }
-        return $this->render('register', ['model' => $model]);
     }
 
     /**

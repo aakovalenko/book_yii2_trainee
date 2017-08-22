@@ -28,7 +28,11 @@ use app\widgets\Nav;
                                 'class' => 'nav side-menu',
                             ],
                         ]);
+
+
                         ?>
+
+
 </div>
 
 </div>
