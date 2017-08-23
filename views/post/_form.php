@@ -15,7 +15,7 @@ use vova07\imperavi\Widget;
 
     <?= $form->field($model, 'title')->textInput(['maxlength' => true]) ?>
 
-    <?=$form->field($model, 'content')->widget(Widget::className(), [
+    <?=$form->field($model, 'text')->widget(Widget::className(), [
         'settings' => [
             'lang' => 'ru',
             'minHeight' => 200,
@@ -25,8 +25,6 @@ use vova07\imperavi\Widget;
             ]
         ]
     ]);?>
-
-    <?= $form->field($model, 'text')->textarea(['rows' => 6]) ?>
 
 
     <?= $form->field($model, 'url')->textInput(['maxlength' => true]) ?>

@@ -1,4 +1,5 @@
 <?php
+use yii\helpers\Html;
 /**
  * Created by PhpStorm.
  * User: andri
@@ -11,3 +12,11 @@
 
 <h1><?=$post->title;?></h1>
 <?=$post->text;?>
+<br>
+<br>
+<p>
+    <?= Html::a(Yii::t('app', 'Update'), ['update'], ['class' => 'btn btn-success']) ?>
+</p>
+
+
+

@@ -11,6 +11,17 @@ $config = [
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'components' => [
+        //<-----AdminLTE------->
+        /*
+        'view' => [
+            'theme' => [
+                'pathMap' => [
+                    '@app/views' => '@vendor/dmstr/yii2-adminlte-asset/example-views/yiisoft/yii2-app'
+                ],
+            ],
+        ],
+        */
+        //<-----AdminLTE------->
         'request' => [
             // !!! insert a secret key in the following (if it is empty) - this is required by cookie validation
             'cookieValidationKey' => 'UfnfAglwHSa9KrWh1TEizx_rWk2qR4tD',
@@ -50,8 +61,12 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                'post/<url>' => 'post/one',
-                'post' => 'post/index',
+//                'post/<url>' => 'post/one',
+//                'post/all' => 'post/all',
+//                'post' => 'post/index',
+//                'post/create' => 'post/create',
+//                'post/update' => 'post/update',
+//                'post/view' => 'post/view'
             ],
         ],
 

@@ -1,4 +1,5 @@
 <?php
+use yii\helpers\Html;
 /**
  * Created by PhpStorm.
  * User: andri
@@ -25,3 +26,6 @@
     </div>
 
 </div>
+<p>
+    <?= Html::a(Yii::t('app', 'Create Post'), ['create'], ['class' => 'btn btn-success']) ?>
+</p>

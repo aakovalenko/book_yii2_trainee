@@ -41,6 +41,18 @@ class PostController extends Controller
      */
     public function actionIndex()
     {
+
+        $searchModel = new PostSearch();
+        $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
+        return $this->render('index',[
+            'dataProvider' => $dataProvider,
+            'searchModel' => $searchModel,
+            ]);
+    }
+
+
+    public function actionAll()
+    {
         $posts = Post::find()->andWhere(['status_id' => 0])->orderBy('sort')->all();
         return $this->render('all',['posts' => $posts]);
     }
