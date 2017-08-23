@@ -40,7 +40,7 @@ class SiteController extends Controller
      */
     public function actionIndex()
     {
-        $post = Post::find()->andWhere(['status_id' => 1])->orderBy('sort')->all();
+        $post = Post::find()->orderBy('sort')->all();
         return $this->render('index',['posts' => $post]);
     }
 

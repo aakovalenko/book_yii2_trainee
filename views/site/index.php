@@ -1,6 +1,7 @@
 <?php
 
 /* @var $this yii\web\View */
+/* @var $posts app\models\Post */
 
 $this->title = 'My Yii Application';
 ?>
