@@ -71,4 +71,9 @@ class Post extends ActiveRecord
             'sort' => Yii::t('app', 'Сортировка'),
         ];
     }
+
+    public function getAuthor()
+    {
+       return $this->hasOne(Users::className(),['id' => 'user_id']);
+    }
 }

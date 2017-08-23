@@ -16,7 +16,7 @@ use yii\helpers\Html;
     <div class="row">
         <?php foreach ($posts as $post) :?>
             <div class="col-lg-12">
-                <h2><?=$post->title;?></h2>
+                <h2><?=$post->title;?><span class="badge"><?=$post->author->username?></span></h2>
 
                 <p><?=$post->text;?></p>
 

@@ -41,7 +41,6 @@ $this->params['breadcrumbs'][] = $this->title;
                    'buttons' => [
                       'check' => function ($url, $model, $key){
                          return Html::a('<i class="fa fa-check" aria-hidden="true"></i>',$url);
-
                       }
                ],
                 'visibleButtons' => [

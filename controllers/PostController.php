@@ -69,7 +69,7 @@ class PostController extends Controller
 
     public function actionAll()
     {
-        $posts = Post::find()->andWhere(['status_id' => 0])->orderBy('sort')->all();
+        $posts = Post::find()->with('author')->andWhere(['status_id' => 1])->orderBy('sort')->all();//with жадная загрузка
         return $this->render('all',['posts' => $posts]);
     }
 
