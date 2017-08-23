@@ -46,7 +46,15 @@ class PostSearch extends Post
         // add conditions that should always apply here
 
         $dataProvider = new ActiveDataProvider([
+            'pagination' => [
+                'pagesize' => 20,
+            ],
             'query' => $query,
+            'sort' => [
+                'defaultOrder' => [
+                    'id' => SORT_DESC,
+                ]
+            ]
         ]);
 
         $this->load($params);

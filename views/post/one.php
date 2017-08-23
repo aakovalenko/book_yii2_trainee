@@ -15,7 +15,7 @@ use yii\helpers\Html;
 <br>
 <br>
 <p>
-    <?= Html::a(Yii::t('app', 'Update'), ['update'], ['class' => 'btn btn-success']) ?>
+    <?= Html::a(Yii::t('app', 'Update'), ['url/update'], ['class' => 'btn btn-success']) ?>
 </p>
 
 

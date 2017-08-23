@@ -21,7 +21,8 @@ use vova07\imperavi\Widget;
             'minHeight' => 200,
             'plugins' => [
                 'clips',
-                'fullscreen'
+                'fullscreen',
+                'frontcolor'
             ]
         ]
     ]);?>

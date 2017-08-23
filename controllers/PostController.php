@@ -50,6 +50,22 @@ class PostController extends Controller
             ]);
     }
 
+/* 30 post
+    public function actionFff()
+    {
+        for ($i=0; $i<30; $i++) {
+
+            $model = new Post();
+            $model->title = 'Zagolovok # '.$i;
+            $model->text = 'Some text';
+            $model->sort = 50;
+            $model->status_id = 1;
+            $model->url = 'url_'.$i;
+            $model->save();
+        }
+        return 12345;
+    }
+*/
 
     public function actionAll()
     {
