@@ -47,7 +47,7 @@ class PostSearch extends Post
 
         $dataProvider = new ActiveDataProvider([
             'pagination' => [
-                'pagesize' => 20,
+                'pagesize' => 15,
             ],
             'query' => $query,
             'sort' => [

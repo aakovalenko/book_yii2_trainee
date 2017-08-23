@@ -19,6 +19,8 @@ $this->params['breadcrumbs'][] = $this->title;
         <?= Html::a(Yii::t('app', 'Create Post'), ['create'], ['class' => 'btn btn-success']) ?>
     </p>
 <?php Pjax::begin(); ?>
+
+
     <?= GridView::widget([
         'dataProvider' => $dataProvider,
         'filterModel' => $searchModel,
@@ -27,15 +29,30 @@ $this->params['breadcrumbs'][] = $this->title;
 
             //'id',
             'title',
-            'text:ntext',
+            'text:raw', //raw - убирает html теги
            // 'created_date',
             //'modified_date',
-            // 'url:url',
-            // 'status_id',
+             ['attribute' => 'url', 'format'=>'text'],
+             ['attribute' => 'status_id', 'filter' => [0 => 'off', 1 =>'on']],
             // 'sort',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+                   'template' => '{view} {update} {delete} {check}',
+                   'buttons' => [
+                      'check' => function ($url, $model, $key){
+                         return Html::a('<i class="fa fa-check" aria-hidden="true"></i>',$url);
+
+                      }
+               ],
+                'visibleButtons' => [
+                        'check' => function ($model, $key, $index){
+                            return $model->status_id === 1;
+                        }
+                ]
+            ]
         ],
     ]); ?>
+
+
 <?php Pjax::end(); ?>
 </div>

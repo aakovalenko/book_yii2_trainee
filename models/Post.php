@@ -48,6 +48,7 @@ class Post extends ActiveRecord
         return [
             [['title', 'text', 'url', 'status_id', 'sort'], 'required'],
             [['text'], 'string'],
+            [['url'],'unique'],
             [['created_date', 'modified_date', 'status_id', 'sort'], 'integer'],
             [['title', 'url'], 'string', 'max' => 255],
             [['sort'], 'integer', 'max' => 99, 'min' => 1],
