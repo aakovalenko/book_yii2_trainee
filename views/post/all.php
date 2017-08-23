@@ -19,6 +19,7 @@
 
                 <p><?=$post->text;?></p>
 
+                <?= \yii\bootstrap\Html::a('подробнее', ['post/one', 'url' => $post->url],['class' => 'btn-btn-success']) ?>
             </div>
         <?php endforeach;?>
     </div>

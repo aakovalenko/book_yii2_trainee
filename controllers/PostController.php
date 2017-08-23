@@ -48,8 +48,11 @@ class PostController extends Controller
 
     public function actionOne($url)
     {
-        $post = Post::find()->andWhere(['url' => $url])->one();
-        return $this->render('one',['post' => $post]);
+        if ($post = Post::find()->andWhere(['url' => $url])->one() ){
+            return $this->render('one',['post' => $post]);
+    }
+        throw new NotFoundHttpException('Нет такого поста!');
+
     }
 
     /**

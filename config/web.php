@@ -50,7 +50,8 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-                'post/<url>' => 'post/one'
+                'post/<url>' => 'post/one',
+                'post' => 'post/index',
             ],
         ],
 
