@@ -76,4 +76,9 @@ class Post extends ActiveRecord
     {
        return $this->hasOne(Users::className(),['id' => 'user_id']);
     }
+
+    public function getPostTag()
+    {
+        return $this->hasMany(PostTag::className(),['post_id' => 'id']);
+    }
 }

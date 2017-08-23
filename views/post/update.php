@@ -20,4 +20,10 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
         'model' => $model,
     ]) ?>
 
+    <div class="well">
+        <?php foreach ($model->blogTag as $one):?>
+        <?=$one?>
+        <?php endforeach;?>
+    </div>
+
 </div>
