@@ -5,6 +5,7 @@ namespace app\models;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
+use app\models\PostTag;
 
 /**
  * This is the model class for table "post".
@@ -72,6 +73,8 @@ class Post extends ActiveRecord
         ];
     }
 
+    //-------------------------СВЯЗИ------------------------------------------//
+
     public function getAuthor()
     {
        return $this->hasOne(Users::className(),['id' => 'user_id']);
@@ -79,6 +82,10 @@ class Post extends ActiveRecord
 
     public function getPostTag()
     {
-        return $this->hasMany(PostTag::className(),['post_id' => 'id']);
+        return $this->hasMany(PostTag::className(),['blog_id' => 'id']);
+    }
+
+    public function getTag(){
+        return $this->hasMany(Tag::className(),['id'=>'tag_id'])->via('PostTag');
     }
 }

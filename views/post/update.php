@@ -21,8 +21,8 @@ $this->params['breadcrumbs'][] = Yii::t('app', 'Update');
     ]) ?>
 
     <div class="well">
-        <?php foreach ($model->blogTag as $one):?>
-        <?=$one?>
+        <?php foreach ($model->tags as $one):?>
+        <?=$one->name;?><br>
         <?php endforeach;?>
     </div>
 
