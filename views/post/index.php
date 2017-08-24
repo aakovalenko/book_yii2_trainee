@@ -36,6 +36,8 @@ $this->params['breadcrumbs'][] = $this->title;
              ['attribute' => 'status_id', 'filter' => [0 => 'off', 1 =>'on']],
             // 'sort',
 
+             ['attribute' => 'tags', 'value' => 'TagsAsString'],
+
             ['class' => 'yii\grid\ActionColumn',
                    'template' => '{view} {update} {delete} {check}',
                    'buttons' => [
@@ -47,7 +49,7 @@ $this->params['breadcrumbs'][] = $this->title;
                         'check' => function ($model, $key, $index){
                             return $model->status_id === 1;
                         }
-                ]
+                ],
             ]
         ],
     ]); ?>

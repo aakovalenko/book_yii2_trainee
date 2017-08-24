@@ -6,6 +6,7 @@ use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use app\models\PostTag;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "post".
@@ -21,6 +22,7 @@ use app\models\PostTag;
  */
 class Post extends ActiveRecord
 {
+    public $tags_array;
     /**
      * @inheritdoc
      */
@@ -53,6 +55,7 @@ class Post extends ActiveRecord
             [['created_date', 'modified_date', 'status_id', 'sort'], 'integer'],
             [['title', 'url'], 'string', 'max' => 255],
             [['sort'], 'integer', 'max' => 99, 'min' => 1],
+            [['tags_array'], 'safe']
         ];
     }
 
@@ -70,6 +73,9 @@ class Post extends ActiveRecord
             'url' => Yii::t('app', 'ЧПУ'),
             'status_id' => Yii::t('app', 'Статус'),
             'sort' => Yii::t('app', 'Сортировка'),
+            'tags_array' => Yii::t('app','Теги'),
+            'tagsAsString' => Yii::t('app','Теги'),
+            'author.name' => Yii::t('app', 'Автор')
         ];
     }
 
@@ -88,4 +94,35 @@ class Post extends ActiveRecord
     public function getTag(){
         return $this->hasMany(Tag::className(),['id'=>'tag_id'])->via('PostTag');
     }
+
+    public function getTagsAsString(){
+        $arr = ArrayHelper::map($this->tags, 'id', 'name');
+        return implode(',',$arr);
+    }
+
+    public function afterFind(){
+        $this->tags_array = $this->tags;
+    }
+
+
+    public function afterSave($insert, $changeAttributes)
+    {
+        parent::afterSave($insert, $changeAttributes);
+
+        $arr = ArrayHelper::map($this->tags, 'id','id');
+        foreach ($this->tags_array as $one) {
+            if(!in_array($one, $arr)){
+                $model = new PostTag();
+                $model->post_id = $this->id;
+                $model->tag_id = $one;
+                $model->save();
+            }
+            if(isset($arr[$one])){
+                unset($arr[$one]);
+            }
+        }
+        PostTag::deleteAll(['tag_id' => $arr]);
+    }
+
+
 }
