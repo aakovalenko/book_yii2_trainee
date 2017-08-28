@@ -88,11 +88,11 @@ class Post extends ActiveRecord
 
     public function getPostTag()
     {
-        return $this->hasMany(PostTag::className(),['blog_id' => 'id']);
+        return $this->hasMany(PostTag::className(),['post_id' => 'id']);
     }
 
-    public function getTag(){
-        return $this->hasMany(Tag::className(),['id'=>'tag_id'])->via('PostTag');
+    public function getTags(){
+        return $this->hasMany(Tag::className(),['id'=>'tag_id'])->via('postTag'); //**********PostTrag
     }
 
     public function getTagsAsString(){

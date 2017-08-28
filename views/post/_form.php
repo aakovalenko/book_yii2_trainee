@@ -42,7 +42,7 @@ use app\models\Tag;
     'data' => ArrayHelper::map(
             Tag::find()->all(), 'id', 'name'),
     'language' => 'en',
-    'options' => ['placeholder' => 'Select a tag ...', 'multiple' => true],
+    'options' => ['placeholder' => 'Select a tag ...', 'multiple' => true], //'multiple -> для выбора нескольких значений
     'pluginOptions' => [
         'allowClear' => true,
         'tags' => true,

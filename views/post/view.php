@@ -30,7 +30,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'attributes' => [
             //'id',
             'title',
-            'text:ntext',
+            'text:raw', //ntext - отображает теги
             'created_date',
             'modified_date',
             'url:url',
