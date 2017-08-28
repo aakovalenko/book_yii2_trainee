@@ -5,6 +5,7 @@ $db = require(__DIR__ . '/db.php');
 $db2 = require(__DIR__ . '/db2.php');
 
 Yii::setAlias('admin', __DIR__ . '/../admin');
+Yii::setAlias('@images', __DIR__.'/../uploads/images');
 
 $config = [
     'id' => 'basic',
@@ -74,6 +75,9 @@ $config = [
     'modules' => [
         'admin' => [
             'class' => 'admin\Module',
+        ],
+        'post' => [
+            'class' => 'app\modules\post\Post',
         ],
         'gii' => [
             'class' => 'yii\gii\Module',

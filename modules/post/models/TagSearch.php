@@ -1,11 +1,11 @@
 <?php
 
-namespace app\models;
+namespace app\modules\post\models;
 
 use Yii;
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Tag;
+use app\modules\post\models\Tag;
 
 /**
  * TagSearch represents the model behind the search form about `app\models\Tag`.

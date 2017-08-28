@@ -6,8 +6,8 @@ use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 use vova07\imperavi\Widget;
 use kartik\select2\Select2;
-use app\models\Tag;
-use app\models\Post;
+use app\modules\post\models\Tag;
+use app\modules\post\models\Post;
 
 
 /* @var $this yii\web\View */
@@ -30,9 +30,10 @@ use app\models\Post;
                 'fullscreen',
                 'frontcolor'
             ],
-            'imageUpload' => Url::to(['/default/image-upload']),
+            'imageUpload' => Url::to(['/site/save-redactor-img', 'sub' => 'post']),
         ]
     ]);?>
+
 
 
     <?= $form->field($model, 'url')->textInput(['maxlength' => true]) ?>

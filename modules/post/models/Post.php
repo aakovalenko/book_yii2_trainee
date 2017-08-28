@@ -1,11 +1,11 @@
 <?php
 
-namespace app\models;
+namespace app\modules\post\models;
 
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
-use app\models\PostTag;
+use app\modules\post\models\PostTag;
 use yii\helpers\ArrayHelper;
 use app\components\behaviors\StatusBehaviors;
 
@@ -20,12 +20,14 @@ use app\components\behaviors\StatusBehaviors;
  * @property string $url
  * @property integer $status_id
  * @property integer $sort
+ *  @property string  $image
  *
  */
 class Post extends ActiveRecord
 {
     const STATUS_LIST = ['off','on'];
     public $tags_array;
+    public $file;
     /**
      * @inheritdoc
      */
@@ -70,7 +72,9 @@ class Post extends ActiveRecord
             [['created_date', 'modified_date', 'status_id', 'sort'], 'integer'],
             [['title', 'url'], 'string', 'max' => 255],
             [['sort'], 'integer', 'max' => 99, 'min' => 1],
-            [['tags_array'], 'safe']
+            [['tags_array'], 'safe'],
+            [['image'], 'string', 'max' => 100],
+            [['file'],'image'],
         ];
     }
 
@@ -90,7 +94,9 @@ class Post extends ActiveRecord
             'sort' => Yii::t('app', 'Сортировка'),
             'tags_array' => Yii::t('app','Теги'),
             'tagsAsString' => Yii::t('app','Теги'),
-            'author.name' => Yii::t('app', 'Автор')
+            'author.name' => Yii::t('app', 'Автор'),
+            'image' => Yii::t('app', 'Картинка'),
+            'file' => Yii::t('app', 'Картинка'),
         ];
     }
 
