@@ -7,6 +7,7 @@ use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use app\models\PostTag;
 use yii\helpers\ArrayHelper;
+use app\components\behaviors\StatusBehaviors;
 
 /**
  * This is the model class for table "post".
@@ -19,9 +20,11 @@ use yii\helpers\ArrayHelper;
  * @property string $url
  * @property integer $status_id
  * @property integer $sort
+ *
  */
 class Post extends ActiveRecord
 {
+    const STATUS_LIST = ['off','on'];
     public $tags_array;
     /**
      * @inheritdoc
@@ -39,8 +42,20 @@ class Post extends ActiveRecord
                     ActiveRecord::EVENT_BEFORE_INSERT => 'created_date',
                     ActiveRecord::EVENT_BEFORE_UPDATE => 'modified_date',
                 ]
+            ],
+            'statusBehavior' => [
+                'class' => StatusBehaviors::className(),
+                'statusList' => self::STATUS_LIST,
             ]
         ];
+        /*
+        [
+            'class' => TimestampBehavior::className(),
+            'createdAtAttribute' => 'create_time',
+            'updatedAtAttribute' => 'update_time',
+            'value' => new Expression('NOW()'),
+        ],
+        */
     }
 
     /**
@@ -81,6 +96,8 @@ class Post extends ActiveRecord
 
     //-------------------------СВЯЗИ------------------------------------------//
 
+
+
     public function getAuthor()
     {
        return $this->hasOne(Users::className(),['id' => 'user_id']);
@@ -97,7 +114,7 @@ class Post extends ActiveRecord
 
     public function getTagsAsString(){
         $arr = ArrayHelper::map($this->tags, 'id', 'name');
-        return implode(',',$arr);
+        return implode(', ',$arr);
     }
 
     public function afterFind(){

@@ -15,11 +15,13 @@ use app\widgets\Nav;
                         <?php
                         $items = [
                             ['label' => Yii::t('app', 'Home'), 'url' => ['/'], 'icon' => 'flag'],
-                            ['label' => Yii::t('app', 'Forms'), 'url' => ['/'], 'icon' => 'flag'],
+                            ['label' => Yii::t('app', 'Forms'), 'url' => ['/'], 'icon' => 'desktop'],
+                            ['label' => Yii::t('app', 'Post'), 'url' => ['../post/index'], 'icon' => 'pencil'],
+                            ['label' => Yii::t('app', 'Tags'), 'url' => ['../tag/index'], 'icon' => 'tags'],
                             ['label' => Yii::t('app', 'UI Elements'), 'url' => ['/'], 'icon' => 'flag'],
-                            ['label' => Yii::t('app', 'Tables'), 'url' => ['/'], 'icon' => 'flag'],
+                            ['label' => Yii::t('app', 'Tables'), 'url' => ['/'], 'icon' => 'bar-chart'],
                             ['label' => Yii::t('app', 'Data Presentation'), 'url' => ['/'], 'icon' => 'flag'],
-                            ['label' => Yii::t('app', 'Layouts'), 'url' => ['/'], 'icon' => 'flag'],
+                            ['label' => Yii::t('app', 'Layouts'), 'url' => ['/'], 'icon' => 'chevron-down'],
                         ];
 
                         echo Nav::widget([

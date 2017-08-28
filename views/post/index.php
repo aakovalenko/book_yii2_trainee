@@ -3,6 +3,7 @@
 use yii\helpers\Html;
 use yii\grid\GridView;
 use yii\widgets\Pjax;
+use app\models\Post;
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\PostSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -30,10 +31,10 @@ $this->params['breadcrumbs'][] = $this->title;
             //'id',
             'title',
             'text:raw', //raw - убирает html теги
-           // 'created_date',
-            //'modified_date',
+            'created_date:datetime', //выводит время в читаевом виде
+            'modified_date:datetime',
              ['attribute' => 'url', 'format'=>'text'],
-             ['attribute' => 'status_id', 'filter' => [0 => 'off', 1 =>'on']],
+             ['attribute' => 'status_id', 'filter' => Post::STATUS_LIST],
             // 'sort',
 
              ['attribute' => 'tags', 'value' => 'TagsAsString'],
