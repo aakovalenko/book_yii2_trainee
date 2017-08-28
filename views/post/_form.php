@@ -2,10 +2,13 @@
 
 use yii\helpers\Html;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Url;
 use yii\widgets\ActiveForm;
 use vova07\imperavi\Widget;
 use kartik\select2\Select2;
 use app\models\Tag;
+use app\models\Post;
+
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Post */
@@ -26,14 +29,15 @@ use app\models\Tag;
                 'clips',
                 'fullscreen',
                 'frontcolor'
-            ]
+            ],
+            'imageUpload' => Url::to(['/default/image-upload']),
         ]
     ]);?>
 
 
     <?= $form->field($model, 'url')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'status_id')->dropDownList(['off','on']) ?>
+    <?= $form->field($model, 'status_id')->dropDownList(Post::STATUS_LIST) ?>
 
     <?= $form->field($model, 'sort')->textInput() ?>
 
