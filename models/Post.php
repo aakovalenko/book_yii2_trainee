@@ -118,6 +118,7 @@ class Post extends ActiveRecord
     }
 
     public function afterFind(){
+        parent::afterFind();
         $this->tags_array = $this->tags;
     }
 

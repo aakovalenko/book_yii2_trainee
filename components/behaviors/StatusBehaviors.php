@@ -1,7 +1,10 @@
 <?php
 namespace app\components\behaviors;
 
+use yii\db\ActiveRecord;
 use yii\base\Behavior;
+use yii\base\Model;
+
 /**
  * Created by PhpStorm.
  * User: andrii
@@ -12,6 +15,14 @@ use yii\base\Behavior;
 class StatusBehaviors extends Behavior
 {
     public $statusList;
+
+    public function events()
+    {
+        return [
+            ActiveRecord::EVENT_AFTER_FIND => 'ddd',
+        ];
+    }
+
 
     public function getStatusList()
     {
@@ -24,8 +35,9 @@ class StatusBehaviors extends Behavior
         return $list[$this->owner->status_id];
     }
 
-    public function events()
+
+    public function ddd($events)
     {
-        return [];
+        $this->owner->title = $this->owner->title.' ]-__-[';
     }
 }
