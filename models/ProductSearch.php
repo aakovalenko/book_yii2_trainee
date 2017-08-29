@@ -18,8 +18,8 @@ class ProductSearch extends Product
     public function rules()
     {
         return [
-            [['id', 'cost', 'type_id', 'sklad_id'], 'integer'],
-            [['title', 'test'], 'safe'],
+            [['id', 'cost', 'type_id', ], 'integer'],
+            [['title', 'test', 'sklad_id'], 'safe'],
         ];
     }
 
@@ -41,7 +41,7 @@ class ProductSearch extends Product
      */
     public function search($params)
     {
-        $query = Product::find();
+        $query = Product::find()->joinWith('sklad');
 
         // add conditions that should always apply here
 
@@ -62,11 +62,12 @@ class ProductSearch extends Product
             'id' => $this->id,
             'cost' => $this->cost,
             'type_id' => $this->type_id,
-            'sklad_id' => $this->sklad_id,
         ]);
 
         $query->andFilterWhere(['like', 'title', $this->title])
-            ->andFilterWhere(['like', 'test', $this->test]);
+            ->andFilterWhere(['like', 'test', $this->test])
+        ->andFilterWhere(['like', 'sklad.title', $this->sklad_id]);
+
 
         return $dataProvider;
     }

@@ -2,6 +2,8 @@
 
 use yii\helpers\Html;
 use yii\grid\GridView;
+use app\models\Sklad;
+use app\models\Product;
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\ProductSearch */
@@ -25,11 +27,13 @@ $this->params['breadcrumbs'][] = $this->title;
             ['class' => 'yii\grid\SerialColumn'],
 
             'id',
+            ['attribute' => 'sklad_id','value' => 'skladName', 'filter'=> [Sklad::getList()]],
+            //'sklad_id',
             'title',
             'cost',
-            'type_id',
+            ['attribute' => 'type_id','value' => 'typeName', 'filter'=> [Product::getTypeList()]],
             'test:ntext',
-            // 'sklad_id',
+
 
             ['class' => 'yii\grid\ActionColumn'],
         ],

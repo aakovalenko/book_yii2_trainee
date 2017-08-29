@@ -51,4 +51,32 @@ class Product extends \yii\db\ActiveRecord
             'sklad_id' => Yii::t('app', 'Sklad ID'),
         ];
     }
+
+    public static function getTypeList()
+    {
+        return [
+            'first',
+            'second',
+            'third'
+        ];
+    }
+
+    public function getSklad()
+    {
+        return $this->hasOne(Sklad::className(), ['id' => 'sklad_id']);
+    }
+
+    public function getSkladName()
+    {
+        return (isset($this->sklad)) ? $this->sklad->title: 'Not specified!';
+    }
+
+    public function getTypeName()
+    {
+        $list = $this->getTypeList();
+        return $list[$this->type_id];
+    }
+
+
+
 }

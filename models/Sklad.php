@@ -3,6 +3,7 @@
 namespace app\models;
 
 use Yii;
+use yii\helpers\ArrayHelper;
 
 /**
  * This is the model class for table "sklad".
@@ -43,5 +44,10 @@ class Sklad extends \yii\db\ActiveRecord
             'title' => Yii::t('app', 'Title'),
             'address' => Yii::t('app', 'Address'),
         ];
+    }
+
+    public static function getList()
+    {
+        return ArrayHelper::map(self::find()->all(),'id','title');
     }
 }
