@@ -3,16 +3,16 @@
 namespace app\controllers;
 
 use Yii;
-use app\models\Time;
-use app\models\TimeSearch;
+use app\models\Product;
+use app\models\ProductSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
 
 /**
- * TimeController implements the CRUD actions for Time model.
+ * ProductController implements the CRUD actions for Product model.
  */
-class TimeController extends Controller
+class ProductController extends Controller
 {
     /**
      * @inheritdoc
@@ -30,12 +30,12 @@ class TimeController extends Controller
     }
 
     /**
-     * Lists all Time models.
+     * Lists all Product models.
      * @return mixed
      */
     public function actionIndex()
     {
-        $searchModel = new TimeSearch();
+        $searchModel = new ProductSearch();
         $dataProvider = $searchModel->search(Yii::$app->request->queryParams);
 
         return $this->render('index', [
@@ -45,7 +45,7 @@ class TimeController extends Controller
     }
 
     /**
-     * Displays a single Time model.
+     * Displays a single Product model.
      * @param integer $id
      * @return mixed
      */
@@ -57,13 +57,13 @@ class TimeController extends Controller
     }
 
     /**
-     * Creates a new Time model.
+     * Creates a new Product model.
      * If creation is successful, the browser will be redirected to the 'view' page.
      * @return mixed
      */
     public function actionCreate()
     {
-        $model = new Time();
+        $model = new Product();
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
             return $this->redirect(['view', 'id' => $model->id]);
@@ -75,7 +75,7 @@ class TimeController extends Controller
     }
 
     /**
-     * Updates an existing Time model.
+     * Updates an existing Product model.
      * If update is successful, the browser will be redirected to the 'view' page.
      * @param integer $id
      * @return mixed
@@ -94,7 +94,7 @@ class TimeController extends Controller
     }
 
     /**
-     * Deletes an existing Time model.
+     * Deletes an existing Product model.
      * If deletion is successful, the browser will be redirected to the 'index' page.
      * @param integer $id
      * @return mixed
@@ -107,15 +107,15 @@ class TimeController extends Controller
     }
 
     /**
-     * Finds the Time model based on its primary key value.
+     * Finds the Product model based on its primary key value.
      * If the model is not found, a 404 HTTP exception will be thrown.
      * @param integer $id
-     * @return Time the loaded model
+     * @return Product the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
     protected function findModel($id)
     {
-        if (($model = Time::findOne($id)) !== null) {
+        if (($model = Product::findOne($id)) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
