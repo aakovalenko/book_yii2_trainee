@@ -15,7 +15,21 @@ use app\modules\post\models\Post;
 class SiteController extends Controller
 {
 
-
+//    public function behaviors()
+//    {
+//        return [
+//            'access' => [
+//                'class' => AccessControl::className(),
+//                'rules' => [
+//                    [
+//                        'actions' => ['index'],
+//                        'allow' => true,
+//                        'roles' => ['*'],
+//                    ],
+//                ],
+//            ]
+//            ];
+//}
 
     /**
      * @inheritdoc

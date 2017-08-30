@@ -17,17 +17,18 @@ class ProductController extends Controller
     /**
      * @inheritdoc
      */
-    public function behaviors()
-    {
-        return [
-            'verbs' => [
-                'class' => VerbFilter::className(),
-                'actions' => [
-                    'delete' => ['POST'],
-                ],
-            ],
-        ];
-    }
+
+//    public function behaviors()
+//    {
+//        return [
+//            'verbs' => [
+//                'class' => VerbFilter::className(),
+//                'actions' => [
+//                    'delete' => ['POST'],
+//                ],
+//            ],
+//        ];
+//    }
 
     /**
      * Lists all Product models.
@@ -121,4 +122,51 @@ class ProductController extends Controller
             throw new NotFoundHttpException('The requested page does not exist.');
         }
     }
+
+    /* Заводим пользователей в базу  */
+
+  public function actionRole()
+   {
+               //1 Настройка Role и Permission
+//        $admin = Yii::$app->authManager->createRole('admin');
+//        $admin->description = 'Администратор';
+//        Yii::$app->authManager->add($admin);
+//
+//        $manager = Yii::$app->authManager->createRole('manager');
+//        $manager->description = 'Контент-менеджер';
+//        Yii::$app->authManager->add($manager);
+//
+//        $user = Yii::$app->authManager->createRole('user');
+//        $user->description = 'Пользователь';
+//        Yii::$app->authManager->add($user);
+//
+//        $ban = Yii::$app->authManager->createRole('ban');
+//        $ban->description = 'Тварь';
+//        Yii::$app->authManager->add($ban);
+//
+//        return 12345;
+//                    //2
+//              -----------------
+//      $permit = Yii::$app->authManager->createPermission('canAdmin');
+//      $permit->description = 'Право входа в админку';
+//      Yii::$app->authManager->add($permit);
+//               ----------------
+//                     //3 Наследования ролей и прав
+//     // $role_a = Yii::$app->authManager->getRole('admin');
+//      $role_c = Yii::$app->authManager->getRole('manager');
+//      $permit = Yii::$app->authManager->getPermission('canAdmin');
+//     // Yii::$app->authManager->addChild($role_a, $permit);
+//      Yii::$app->authManager->addChild($role_c, $permit);
+
+      //4 Привязка ролей к пользователю
+//      $userRole = Yii::$app->authManager->getRole('admin');
+//      Yii::$app->authManager->assign($userRole, 1);
+
+
+
+      return 12345;
+    }
+
+    /* Заводим пользователей в базу  */
+
 }

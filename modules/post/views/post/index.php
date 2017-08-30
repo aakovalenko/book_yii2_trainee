@@ -58,3 +58,11 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <?php Pjax::end(); ?>
 </div>
+<div>
+<?php Pjax::begin([
+        'enablePushState' => false,
+]); ?>
+    <a href="/post/post/push" class="btn btn-info" role="button">Push here</a>
+
+<?php Pjax::end(); ?>
+</div>

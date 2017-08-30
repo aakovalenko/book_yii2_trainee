@@ -35,6 +35,11 @@ class PostController extends Controller
         ];
     }
 
+    public function actionPush()
+    {
+        return '<h1>123 turtles</h1>';
+    }
+
     /**
      * Lists all Post models.
      * @return mixed
