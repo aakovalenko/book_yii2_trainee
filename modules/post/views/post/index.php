@@ -43,7 +43,7 @@ $this->params['breadcrumbs'][] = $this->title;
                    'template' => '{view} {update} {delete} {check}',
                    'buttons' => [
                       'check' => function ($url, $model, $key){
-                         return Html::a('<i class="fa fa-check" aria-hidden="true"></i>',$url);
+                         return Html::a("<i class='fa fa-check' aria-hidden='true'></i>",$url);
                       }
                ],
                 'visibleButtons' => [
