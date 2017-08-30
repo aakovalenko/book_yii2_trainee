@@ -16,9 +16,6 @@ use app\models\Menu;
     <?php $form = ActiveForm::begin(); ?>
 
 
-
-    <?= $form->field($model, 'tree')->dropDownList([1]) ?>
-
     <?= $form->field($model, 'sub')->dropDownList(ArrayHelper::map(Menu::find()->all(),'id','name')) ?>
 
     <?= $form->field($model, 'name')->textInput(['maxlength' => true]) ?>

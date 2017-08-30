@@ -65,15 +65,23 @@ class MenuController extends Controller
     {
         $model = new Menu();
 
-        if ($model->load(Yii::$app->request->post()) and $model->makeRoot() and $model->save()) {
+        if ($model->load(Yii::$app->request->post())) {
 
-            return $this->redirect(['view', 'id' => $model->id]);
-        } else {
+            if ($model->sub == null) {
+                $model->makeRoot();
+            } else {
+                $parent = Menu::find()->andWhere(['id' => $model->sub])->one();
+                $model->prependTo($parent);
+            }
+            if ($model->save()) {
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
+        }
             return $this->render('create', [
                 'model' => $model,
             ]);
         }
-    }
+
 
     /**
      * Updates an existing Menu model.

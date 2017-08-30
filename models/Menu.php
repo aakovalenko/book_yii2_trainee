@@ -35,6 +35,7 @@ class Menu extends \yii\db\ActiveRecord
         return [
             'tree' => [
                 'class' => NestedSetsBehavior::className(),
+
                 // 'treeAttribute' => 'tree',
                 // 'leftAttribute' => 'lft',
                 // 'rightAttribute' => 'rgt',
@@ -61,12 +62,12 @@ class Menu extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['tree', 'name', 'url'], 'required'],
-            [['tree', 'lft', 'rgt', 'depth'], 'integer'],
+            [[ 'name', 'url'], 'required'],
+            [['tree', 'lft', 'rgt', 'depth','sub'], 'integer'],
             [['name'], 'string', 'max' => 255],
             [['url'], 'string', 'max' => 50],
             [['text'], 'string', 'max' => 1000],
-            [['lft', 'rgt', 'depth'], 'safe']
+            [['lft', 'rgt', 'depth', 'tree'], 'safe']
         ];
     }
 
@@ -86,4 +87,6 @@ class Menu extends \yii\db\ActiveRecord
             'text' => Yii::t('app', 'Text'),
         ];
     }
+
+
 }
