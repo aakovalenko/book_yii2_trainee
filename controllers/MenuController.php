@@ -29,6 +29,13 @@ class MenuController extends Controller
         ];
     }
 
+    public function actionTree()
+    {
+        return $this->render('tree', [
+            'data' => Menu::findOne($id)->tree()
+        ]);
+    }
+
     /**
      * Lists all Menu models.
      * @return mixed
