@@ -2,6 +2,7 @@
 
 namespace app\modules\post\models;
 
+use app\models\ImageUpload;
 use Yii;
 use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
@@ -95,12 +96,13 @@ class Post extends ActiveRecord
             'tags_array' => Yii::t('app','Теги'),
             'tagsAsString' => Yii::t('app','Теги'),
             'author.name' => Yii::t('app', 'Автор'),
-            'image' => Yii::t('app', 'Картинка'),
-            'file' => Yii::t('app', 'Картинка'),
+            //'image' => Yii::t('app', 'Картинка'),
+            //'file' => Yii::t('app', 'Картинка'),
         ];
     }
 
     //-------------------------СВЯЗИ------------------------------------------//
+
 
 
 
@@ -148,5 +150,26 @@ class Post extends ActiveRecord
         PostTag::deleteAll(['tag_id' => $arr]);
     }
 
+    public function saveImage($filename) //ловим имя загруженной картинки
+    {
+        $this->image = $filename;
+        return $this->save(false); //сохраняем без валидации
+    }
 
+    public function getImage()
+    {
+        return ($this->image) ? '/uploads/' . $this->image : '/no-image.png';
+    }
+
+    public function deleteImage()
+    {
+        $imageUpLoadModel = new ImageUpload();
+        $imageUpLoadModel->deleteCurrentImage($this->image);
+    }
+
+    public function beforeDelete()
+    {
+        $this->deleteImage();
+        return parent::beforeDelete();
+    }
 }

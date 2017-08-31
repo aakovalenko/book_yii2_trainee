@@ -8,6 +8,8 @@ use app\modules\post\models\PostSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
+use app\models\ImageUpload;
+use yii\web\UploadedFile;
 
 
 /**
@@ -172,6 +174,24 @@ class PostController extends Controller
 
     public function actionSetImage($id)
     {
-        die('страница загрузки картинки'. $id);
+        $model = new ImageUpload;
+
+        if (Yii::$app->request->isPost)
+        {
+            $post = $this->findModel($id);
+
+            $file = UploadedFile::getInstance($model, 'image');
+
+            if($post->saveImage($model->uploadFile($file, $post->image)))//возвращает название картинки
+            {
+                return $this->redirect(['view', 'id' => $post->id]);
+            }
+
+
+        }
+
+            return $this->render('image', ['model' => $model]);
+
+        //die('страница загрузки картинки'. $id);
     }
 }

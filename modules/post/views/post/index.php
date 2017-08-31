@@ -51,6 +51,14 @@ $this->params['breadcrumbs'][] = $this->title;
                             return $model->status_id === 1;
                         }
                 ],
+            ],
+
+            [
+                    'format' => 'html',
+                    'label' => 'Image',
+                    'value' => function($data){
+                         return Html::img($data->getImage(),['width'=> 75]);
+                    }
             ]
         ],
     ]); ?>
