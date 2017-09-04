@@ -98,11 +98,12 @@ class PostController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionView($id)
+    public function actionView($url)
     {
         return $this->render('view', [
-            'model' => $this->findModel($id),
+            'model' => $this->findModel($url),
         ]);
+
     }
 
     /**
@@ -163,9 +164,9 @@ class PostController extends Controller
      * @return Post the loaded model
      * @throws NotFoundHttpException if the model cannot be found
      */
-    protected function findModel($id)
+    protected function findModel($url)
     {
-        if (($model = Post::find()->with('tags')->andWhere(['id' => $id])->one()) !== null) {
+        if (($model = Post::find()->with('tags')->andWhere(['url' => $url])->one()) !== null) {
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');

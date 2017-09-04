@@ -115,6 +115,7 @@ class TagController extends Controller
      */
     protected function findModel($id)
     {
+
         if (($model = Tag::findOne($id)) !== null) {
             return $model;
         } else {

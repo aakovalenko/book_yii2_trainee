@@ -43,8 +43,11 @@ $this->params['breadcrumbs'][] = $this->title;
                    'template' => '{view} {update} {delete} {check}',
                    'buttons' => [
                       'check' => function ($url, $model, $key){
-                         return Html::a("<i class='fa fa-check' aria-hidden='true'></i>",$url);
-                      }
+                         return Html::a("<i class='glyphicon glyphicon-hand-right'></i>",$url);
+                      },
+                       'view' => function($url, $model, $key){
+                          return Html::a("<i class='glyphicon glyphicon-eye-open'></i>", ['/post/post/view', 'url' => $model->url]);
+                       },
                ],
                 'visibleButtons' => [
                         'check' => function ($model, $key, $index){

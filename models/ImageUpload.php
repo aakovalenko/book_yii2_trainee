@@ -33,7 +33,10 @@ class ImageUpload extends Model
 
         if($this->validate())
         {
+
+
             $this->deleteCurrentImage($currentImage);
+
 
             return $this->saveImage();
 
@@ -54,6 +57,7 @@ class ImageUpload extends Model
     {
           if($this->fileExists($currentImage));
             {
+
                 unlink($this->getFolder() . $currentImage);
             }
     }

@@ -69,12 +69,15 @@ $config = [
             'enablePrettyUrl' => true,
             'showScriptName' => false,
             'rules' => [
-//              'post/<url>' => 'post/one',
-//                'post/all' => 'post/all',
-//                'post' => 'post/index',
-//                'post/create' => 'post/create',
-//                'post/update' => 'post/update',
-//                'post/view' => 'post/view'
+                'post/post/create' => 'post/post/create/',
+                'post/post/update/<id:/d+>' => 'post/post/update',
+                'post/<url>' => 'post/post/view',
+//                'post/post/push' => 'post/post/push',
+//              'post/post/<url>' => 'post/post/one',
+                'post/post/all' => 'post/post/all',
+                'post/post' => 'post/post/index',
+
+
             ],
         ],
 
