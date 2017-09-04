@@ -131,12 +131,12 @@ class PostController extends Controller
      * @param integer $id
      * @return mixed
      */
-    public function actionUpdate($id)
+    public function actionUpdate($url)
     {
-        $model = $this->findModel($id);
+        $model = $this->findModel($url);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'url' => $model->url]);
         } else {
             return $this->render('update', [
                 'model' => $model,

@@ -48,6 +48,9 @@ $this->params['breadcrumbs'][] = $this->title;
                        'view' => function($url, $model, $key){
                           return Html::a("<i class='glyphicon glyphicon-eye-open'></i>", ['/post/post/view', 'url' => $model->url]);
                        },
+                       'update' => function($url, $model, $key){
+                          return Html::a("<i class='glyphicon glyphicon-pencil'></i>", ['/post/post/update', 'url' => $model->url]);
+                       },
                ],
                 'visibleButtons' => [
                         'check' => function ($model, $key, $index){
