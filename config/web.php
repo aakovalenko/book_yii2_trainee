@@ -77,6 +77,12 @@ $config = [
 //                'post/post/push' => 'post/post/push',
               'post/post/<url>' => 'post/post/one',
                 'post/post/all' => 'post/post/all',
+                //----------------MENU------------
+                'menu' => 'menu/index',
+                'menu/create' => 'menu/create',
+                'menu/view/<id>' => 'menu/view',
+                'menu/update/<id>' => 'menu/update',
+
 
 
 

@@ -64,6 +64,7 @@ class MenuSearch extends Menu
             'lft' => $this->lft,
             'rgt' => $this->rgt,
             'depth' => $this->depth,
+            'url' => $this->url,
         ]);
 
         $query->andFilterWhere(['like', 'name', $this->name])

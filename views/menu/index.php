@@ -7,7 +7,7 @@ use yii\widgets\Pjax;
 /* @var $searchModel app\models\MenuSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = Yii::t('app', 'Menus');
+$this->title = Yii::t('app', 'Menu');
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="menu-index">
@@ -30,10 +30,22 @@ $this->params['breadcrumbs'][] = $this->title;
             'rgt',
             'depth',
             // 'name',
-            // 'url:url',
+            ['attribute' => 'url', 'format'=>'text'],
             // 'text',
 
-            ['class' => 'yii\grid\ActionColumn'],
+            ['class' => 'yii\grid\ActionColumn',
+
+                'template' => '{view} {update} {delete}',
+                'buttons' => [
+
+                    'view' => function($url, $model, $key){
+                        return Html::a("<i class='glyphicon glyphicon-eye-open'></i>", ['/menu/view/', 'id' => $model->id]);
+                    },
+                    'update' => function($url, $model, $key){
+                        return Html::a("<i class='glyphicon glyphicon-pencil'></i>", ['/menu/update/', 'id' => $model->id]);
+                    },
+                ],
+                ],
         ],
     ]); ?>
 <?php Pjax::end(); ?></div>

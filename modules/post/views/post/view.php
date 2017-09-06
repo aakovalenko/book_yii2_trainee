@@ -15,7 +15,7 @@ $this->params['breadcrumbs'][] = $this->title;
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
-        <?= Html::a(Yii::t('app', 'Update'), ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
+        <?= Html::a(Yii::t('app', 'Update'), ['update', 'url' => $model->url], ['class' => 'btn btn-primary']) ?>
         <?= Html::a(Yii::t('app', 'Set image'), ['set-image', 'id' => $model->id], ['class' => 'btn btn-default']) ?>
 
         <?= Html::a(Yii::t('app', 'Delete'), ['delete', 'id' => $model->id], [
@@ -51,19 +51,119 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <h1>My First Google Map</h1>
 
-<div id="googleMap" style="width:100%;height:400px;"></div>
+<div id="map" style="width:100%;height: 500px;"></div>
+
+<div class="text-success">Your position: </div>
+<div id="lat"></div>
+<div id="lng"></div>
+<div class="text-info">Your address: </div>
+    <div id="address"> </div>
+
 
 <script>
-    function myMap() {
-        var mapProp= {
-            center:new google.maps.LatLng(49, 34),
-            zoom:5,
-        };
-        var map=new google.maps.Map(document.getElementById("googleMap"),mapProp);
+    // Note: This example requires that you consent to location sharing when
+    // prompted by your browser. If you see the error "The Geolocation service
+    // failed.", it means you probably did not give permission for the browser to
+    // locate you.
+
+    function initMap() {
+        var map = new google.maps.Map(document.getElementById('map'), {
+            //center: {lat: 44, lng: 34},
+            zoom: 6
+
+        });
+
+
+
+        var infoWindow = new google.maps.InfoWindow({map: map});
+
+
+        // Try HTML5 geolocation.
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var pos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+
+                };
+
+
+                    document.getElementById("lat").innerHTML = pos.lat;
+                document.getElementById("lng").innerHTML = pos.lng;
+                console.log(pos);
+
+               /* var tribeca = {lat:pos.lat, lng: pos.lng};
+                var marker = new google.maps.Marker({
+                    position: tribeca,
+                    map: map,
+                    title: 'Your are here'
+                });*/
+
+                var geocoder = new google.maps.Geocoder;
+                var infowindow = new google.maps.InfoWindow;
+
+
+                var latlng = {lat: pos.lat, lng: pos.lng};
+                console.log(latlng);
+
+                geocoder.geocode({'location': latlng}, function(results, status) {
+                    if (status === 'OK') {
+                        if (results[1]) {
+                            map.setZoom(11);
+
+                            var marker = new google.maps.Marker({
+                                position: latlng,
+                                map: map
+                            });
+                            infowindow.setContent(results[1].formatted_address);
+
+                            document.getElementById('address').innerHTML = infowindow.content;
+                            console.log(infowindow.content);
+
+
+                            infowindow.open(map, marker);
+                        } else {
+                            window.alert('No results found');
+                        }
+                    } else {
+                        window.alert('Geocoder failed due to: ' + status);
+                    }
+                });
+
+
+
+                //infoWindow.setPosition(pos);
+                //infoWindow.setContent('You are here!');
+                map.setCenter(pos);
+            }, function() {
+                handleLocationError(true, infoWindow, map.getCenter());
+            });
+        } else {
+            // Browser doesn't support Geolocation
+            handleLocationError(false, infoWindow, map.getCenter());
+        }
     }
+
+    function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+        infoWindow.setPosition(pos);
+        infoWindow.setContent(browserHasGeolocation ?
+            'Error: The Geolocation service failed.' :
+            'Error: Your browser doesn\'t support geolocation.');
+    }
+
+
+
+
 </script>
 
-<script src="https://maps.googleapis.com/maps/api/js?AIzaSyDg-nsJiYYErSvbOjDRxnWVC_ia5Cfvilc&callback=myMap"></script>
+<script async defer
+        src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBzhI2jTbdvHUGmbId1fx6eaNcTeSgpKW4&callback=initMap">
+</script>
+
+
+<hr style="color: #0b58a2">
+<hr style="color: yellow">
+
 
 
 

@@ -77,11 +77,11 @@ class MenuController extends Controller
             if ($model->sub == null) {
                 $model->makeRoot();
             } else {
-                $parent = Menu::find()->andWhere(['id' => $model->sub])->one();
+                $parent = Menu::find()->andWhere(['url' => $model->sub])->one();
                 $model->prependTo($parent);
             }
             if ($model->save()) {
-                return $this->redirect(['view', 'id' => $model->id]);
+                return $this->redirect(['view', 'url' => $model->url]);
             }
         }
             return $this->render('create', [
@@ -101,7 +101,7 @@ class MenuController extends Controller
         $model = $this->findModel($id);
 
         if ($model->load(Yii::$app->request->post()) && $model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['view', 'id' => $model->url]);
         } else {
             return $this->render('update', [
                 'model' => $model,
@@ -135,6 +135,8 @@ class MenuController extends Controller
             return $model;
         } else {
             throw new NotFoundHttpException('The requested page does not exist.');
+           // print_r($url);
+
         }
     }
 }
